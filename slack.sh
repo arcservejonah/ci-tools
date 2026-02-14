@@ -10,6 +10,7 @@ CONTAINER_NAMES=$(docker ps --filter "name=runner-" --format "{{.Names}}")
 [ -z "$CONTAINER_NAMES" ] && exit 0
 
 HOSTNAME=$(hostname)
+XH="/home/linuxbrew/.linuxbrew/bin/xh"
 
 # Process each container
 while IFS= read -r CONTAINER_NAME; do
@@ -23,7 +24,7 @@ while IFS= read -r CONTAINER_NAME; do
     echo "Empty directory detected: $DOCKER_DIR"
     echo "Restarting container: $CONTAINER_NAME"
 
-    xh POST "$SLACK_WEBHOOK_URL" message="Found empty docker dir for ${CONTAINER_NAME} on ${HOSTNAME}"
+    $XH POST "$SLACK_WEBHOOK_URL" message="Found empty docker dir for ${CONTAINER_NAME} on ${HOSTNAME}"
     break
     rm -rf "$DOCKER_DIR"
     docker restart "$CONTAINER_NAME"
