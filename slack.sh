@@ -24,8 +24,7 @@ while IFS= read -r CONTAINER_NAME; do
     echo "Empty directory detected: $DOCKER_DIR"
     echo "Restarting container: $CONTAINER_NAME"
 
-    $XH --ignore-stdin POST "$SLACK_WEBHOOK_URL" message="Found empty docker dir for ${CONTAINER_NAME} on ${HOSTNAME}"
-    break
+    $XH --ignore-stdin POST "$SLACK_WEBHOOK_URL" message="Found empty docker dir for ${CONTAINER_NAME} on ${HOSTNAME}. Fixing"
     rm -rf "$DOCKER_DIR"
     docker restart "$CONTAINER_NAME"
   fi
