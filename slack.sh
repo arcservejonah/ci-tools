@@ -19,6 +19,7 @@ while IFS= read -r CONTAINER_NAME; do
   DOCKER_DIR="/tmp/$UUID/docker"
 
   # If the directory exists and is empty, clean up and restart
+  # https://jira.atlassian.com/browse/BCLOUD-22851
   if [ -d "$DOCKER_DIR" ] && [ -z "$(ls -A "$DOCKER_DIR")" ]; then
     echo "=== $(date '+%F %T') ==="
     echo "Empty directory detected: $DOCKER_DIR"
