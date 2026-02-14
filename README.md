@@ -20,5 +20,5 @@ Scripts and tools helpful to have on ci hosts
 
 5. Setup cron job to run slack script
     ```bash
-    * * * * * /home/stc/ci-tools/slack.sh
+    * * * * * /path/to/ci-tools/slack.sh
     ```
